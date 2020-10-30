@@ -2,11 +2,14 @@ package com.example.crudapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase bancoDados;
     public ListView listViewDados;
+    public Button botao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +25,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listViewDados = (ListView) findViewById(R.id.listViewDados);
+        botao = (Button) findViewById(R.id.buttonCadastrar);
+
+        botao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirTelaCadastro();
+            }
+        });
 
         criarBancoDados();
-        inserirDadosTemp();
+        //inserirDadosTemp();
+        listarDados();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
         listarDados();
     }
 
@@ -81,5 +99,10 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void abrirTelaCadastro(){
+        Intent intent = new Intent(this,CadastroActivity.class);
+        startActivity(intent);
     }
 }
