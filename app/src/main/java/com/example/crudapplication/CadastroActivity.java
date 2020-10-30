@@ -29,7 +29,6 @@ public class CadastroActivity extends AppCompatActivity {
                 cadastrar();
             }
         });
-
     }
 
     public void cadastrar(){
