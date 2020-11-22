@@ -30,6 +30,14 @@ Implementação da exclusão do registro acionada a partir de um longClick no it
 
 - - - - - - - - - - - - - - - - - - - - 
 
+Parte 4: Função excluir - DELETE - AlertDialog
+
+https://youtu.be/kfujD1WcmVM
+
+Mensagem de confirmação de exclusão com AlertDialog
+
+- - - - - - - - - - - - - - - - - - - - 
+
 Próximas partes serão publicadas em breve ...
 
 
