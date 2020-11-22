@@ -1,7 +1,9 @@
 package com.example.crudapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public ListView listViewDados;
     public Button botao;
     public ArrayList<Integer> arrayIds;
+    public Integer idSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         listViewDados.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                excluir(i);
+                idSelecionado = arrayIds.get(i);
+                confirmaExcluir();
                 return true;
             }
         });
@@ -119,13 +123,33 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void excluir(Integer i){
+    public void confirmaExcluir() {
+        AlertDialog.Builder msgBox = new AlertDialog.Builder(MainActivity.this);
+        msgBox.setTitle("Excluir");
+        msgBox.setIcon(android.R.drawable.ic_menu_delete);
+        msgBox.setMessage("Você realmente deseja excluir esse registro?");
+        msgBox.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                excluir();
+                listarDados();
+            }
+        });
+        msgBox.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        msgBox.show();
+    }
+
+    public void excluir(){
         //Toast.makeText(this, i.toString(), Toast.LENGTH_SHORT).show();
         try{
             bancoDados = openOrCreateDatabase("crudapp", MODE_PRIVATE, null);
             String sql = "DELETE FROM coisa WHERE id =?";
             SQLiteStatement stmt = bancoDados.compileStatement(sql);
-            stmt.bindLong(1, arrayIds.get(i));
+            stmt.bindLong(1, idSelecionado);
             stmt.executeUpdateDelete();
             listarDados();
             bancoDados.close();
