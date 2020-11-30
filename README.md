@@ -18,7 +18,7 @@ Parte 2: Tela de cadastro INSERT
 
 https://youtu.be/21NTkgI8Dm0
 
-Tutorial básico utilizando Android Studio para criar uma tela de cadastro para inserir dados no banco de dados local SQLite.
+Implementação da tela de cadastro para inserir dados no banco de dados local SQLite.
 
 - - - - - - - - - - - - - - - - - - - - 
 
@@ -38,6 +38,10 @@ Mensagem de confirmação de exclusão com AlertDialog
 
 - - - - - - - - - - - - - - - - - - - - 
 
-Próximas partes serão publicadas em breve ...
+Parte 5: Tela de Alteração - UPDATE
+
+https://youtu.be/TT343Ke214k
+
+Implementação da tela de alteração de dados no banco de dados local SQLite. Ao realizar um click em um item da listView, é exibida uma nova tela com os dados do registro selecionado. Após alterar os dados, clica-se no botão para efetuar a alteração do registro.
 
 
