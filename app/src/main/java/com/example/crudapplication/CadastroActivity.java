@@ -21,7 +21,7 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         editTextNome = (EditText) findViewById(R.id.editTextNome);
-        botao = (Button) findViewById(R.id.buttonCadastrar);
+        botao = (Button) findViewById(R.id.buttonAlterar);
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override

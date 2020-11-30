@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listViewDados = (ListView) findViewById(R.id.listViewDados);
-        botao = (Button) findViewById(R.id.buttonCadastrar);
+        botao = (Button) findViewById(R.id.buttonAlterar);
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 idSelecionado = arrayIds.get(i);
                 confirmaExcluir();
                 return true;
+            }
+        });
+
+        listViewDados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                idSelecionado = arrayIds.get(i);
+                abrirTelaAlterar();
             }
         });
 
@@ -156,5 +163,11 @@ public class MainActivity extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void abrirTelaAlterar(){
+        Intent intent = new Intent(this, AlterarActivity.class);
+        intent.putExtra("id",idSelecionado);
+        startActivity(intent);
     }
 }
